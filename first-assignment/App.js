@@ -4,8 +4,11 @@ import { SafeAreaView, StyleSheet, FlatList, Text, TextInput, View, Image } from
 
 export default function App() {
 
-  const [search, setSearch] = useState('')
-
+  const [text, setText] = useState('');
+  const onTextChanged = (newText) => {
+    setText(newText);
+  };
+  
   const cate = [
     { catName: 'Action', id: '1' },
     { catName: 'Adventure', id: '2' },
@@ -28,12 +31,17 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <TextInput
-        placeholder='Search....'
-        style={styles.input}
-        value={Text}
-      />
+      <View style={styles.searchContainer}> 
+        <StatusBar style="auto" />
+        <TextInput
+          placeholder='Search....'
+          style={styles.input}
+          value={text}
+          onChangeText={onTextChanged}
+        />
+        {text.trim() !== '' && <Image source={require('./assets/close.png')} style={{ width: 20, height: 20}} />}
+      </View>
+
 
       <View style={styles.View}>
         <Text style={styles.title}>
@@ -73,11 +81,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  searchContainer: {
+    flexDirection: 'row', // Make the text input and image side by side
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 5, 
+    padding: 10,
+
+  },
   input: {
     marginTop: 12,
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 20
+    borderWidth: 0,
+    width: 370,
   },
   title: {
     fontSize: 20,
