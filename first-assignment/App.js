@@ -4,6 +4,8 @@ import { SafeAreaView, StyleSheet, FlatList, Text, TextInput, View, Image } from
 
 export default function App() {
 
+  const [search, setSearch] = useState('')
+
   const cate = [
     { catName: 'Action', id: '1' },
     { catName: 'Adventure', id: '2' },
@@ -16,23 +18,22 @@ export default function App() {
   ]
 
   const post = [
-    { postName: 'post1', id: '1' },
-    { postName: 'post1', id: '2' },
-    { postName: 'post1', id: '3' },
-    { postName: 'post1', id: '4' },
-    { postName: 'post1', id: '5' },
-    { postName: 'post1', id: '6'}
+    { postName: 'Bleach', img: require('./assets/image/bleach.jpg'), id: '1' },
+    { postName: 'Blue Period', img: require('./assets/image/bp.jpg'), id: '2' },
+    { postName: 'ChainsawMan', img: require('./assets/image/csm.png'), id: '3' },
+    { postName: 'Dragonball Z', img: require('./assets/image/dbz.jpg'), id: '4' },
+    { postName: 'Demon Slayer', img: require('./assets/image/dms.jpg'), id: '5' },
+    { postName: 'JuJuTSu Kaisen', img: require('./assets/image/jjk.jpg'), id: '6'}
   ]
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="auto" />
       <TextInput
         placeholder='Search....'
         style={styles.input}
         value={Text}
       />
-
-      <StatusBar style="auto" />
 
       <View style={styles.View}>
         <Text style={styles.title}>
@@ -56,8 +57,8 @@ export default function App() {
           data={post}
           renderItem={({ item }) => 
             <View style={styles.itemView}>
-              <Text style={styles.postItem}> {item.postName} </Text>
-              Image
+              <Text style={styles.postTitle}> {item.postName} </Text>
+              <Image style={styles.postImage}  source={item.img}/>
             </View>
           }
           keyExtractor={(item) => item.id}
@@ -71,10 +72,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginHorizontal: 12,
   },
   input: {
-    height: 40,
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
@@ -94,5 +93,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 10,
     marginVertical: 20
+  },
+  postTitle: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    marginVertical: 10
+  },
+  postImage: {
+    width: 200,
+    height: 400
   }
 });
