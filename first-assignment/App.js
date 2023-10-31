@@ -43,7 +43,7 @@ export default function App() {
       </View>
 
 
-      <View style={styles.View}>
+      <View style={styles.cateView}>
         <Text style={styles.title}>
           Categories
         </Text>
@@ -57,7 +57,7 @@ export default function App() {
         />
       </View>
 
-      <View stye={styles.View}>
+      <View style={styles.postView}>
         <Text style={styles.title}>
           Posts  
         </Text>
@@ -100,8 +100,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10
   },
-  View: {
+  cateView: {
     marginVertical: 30,
+  },
+  postView: {
+    marginVertical: 30,
+    flex: 1,
   },
   categoryitem: {
     borderWidth: 1,
